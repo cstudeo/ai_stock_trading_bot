@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+Pipfile.lock
+venv/
+.venv/
+
+# Jupyter Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Model files
+models/*.h5
+models/*.pkl
+
+# Data files
+data/*.csv
+data/*.json
+
+# Logs
+*.log
+*.out
+
+# Ignore system files
+.DS_Store
+*.swp
+*.swo
+
+# Python-specific cache files
+*.egg-info/
+.eggs/
+*.egg
+*.pyo
+
+# IDE specific files
+.vscode/
+.idea/
