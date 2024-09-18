@@ -14,7 +14,7 @@ class LSTMModel:
         self.model = load_model(model_path)
 
     # Preprocess the data for LSTM
-    def preprocess_data(data):
+    def preprocess_data(self, data):
         scaler = MinMaxScaler(feature_range=(0, 1))
         scaled_data = scaler.fit_transform(data['Close'].values.reshape(-1, 1))
 
@@ -32,8 +32,12 @@ class LSTMModel:
 
     def predict(self, data):
         """Predict using the LSTM model."""
-        processed_data = self.preprocess_data(data)
-        prediction = self.model.predict(processed_data)
-        return prediction
+        x_train, _, scaler = self.preprocess_data(data)
+        prediction = self.model.predict(x_train)
+
+        # Inverse scale the prediction to match actual values
+        prediction_scaled = scaler.inverse_transform(prediction)
+
+        return prediction_scaled[-1]  # Return the most recent prediction
 
     # TODO: Implement a decision layer to integrate signals from both the ML model and TA strategies.
